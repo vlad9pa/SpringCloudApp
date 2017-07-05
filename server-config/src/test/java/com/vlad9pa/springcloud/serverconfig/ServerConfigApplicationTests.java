@@ -1,4 +1,4 @@
-package com.vlad9pa.springcloud;
+package com.vlad9pa.springcloud.serverconfig;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
