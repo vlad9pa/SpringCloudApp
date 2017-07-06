@@ -1,4 +1,4 @@
-package com.vlad9pa.springcloud.serverconfig;
+package com.vlad9pa.springcloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

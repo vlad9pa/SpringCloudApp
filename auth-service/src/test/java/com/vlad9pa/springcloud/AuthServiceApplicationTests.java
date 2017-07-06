@@ -1,4 +1,4 @@
-package com.vlad9pa.springcloud.serverconfig;
+package com.vlad9pa.springcloud;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ServerConfigApplicationTests {
+public class AuthServiceApplicationTests {
 
 	@Test
 	public void contextLoads() {
