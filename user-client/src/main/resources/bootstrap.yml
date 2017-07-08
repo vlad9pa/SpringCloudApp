@@ -1,0 +1,28 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8761
+  application:
+    name: user-client
+zuul:
+  routes:
+    user-service:
+      path: /user-service/**
+      serviceId:  user-service
+  strip-prefix: false
+#security:
+#  basic:
+#    enabled: false
+#  oauth2:
+#    authorization:
+#      check-token-access: http://localhost:8090/oauth/check_token
+#    client:
+#      client-id: resource-server
+#      client-secret: browser
+#      aut
+#      access-token-uri: http://localhost:8090/oath/token
+#      grant-type: implicit
+#    resource:
+#      token-info-uri: http://localhost:8090/oauth/check_token
+#    sso:
+#      login-path: /

@@ -8,17 +8,25 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
  * @author Vlad Milyutin.
  */
 @Configuration
 @EnableAuthorizationServer
+@SessionAttributes("authorizationRequest")
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     private final AuthenticationManager authenticationManager;
+
+    @Autowired
+    public AuthorizationServerConfig(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
@@ -28,12 +36,15 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("browser")
-                .secret("browser")
-                .scopes("read", "write")
-                .authorizedGrantTypes("password")
+                .withClient("client")
+                    .secret("clientpassword")
+                    .scopes("openid")
+                    .authorizedGrantTypes("authorization_code", "refresh_token","password")
+                .and()
+                .withClient("resource-server")
+                    .secret("browser")
+                    .authorizedGrantTypes("implicit")
                 .accessTokenValiditySeconds(3600);
-
     }
 
     @Bean
@@ -42,4 +53,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     }
 
 
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+       security.tokenKeyAccess("permitAll()").checkTokenAccess(
+               "isAuthenticated()");
+    }
 }
