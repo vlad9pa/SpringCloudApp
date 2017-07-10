@@ -9,20 +9,25 @@ zuul:
     user-service:
       path: /user-service/**
       serviceId:  user-service
+    uaa-service:
+      path: /uaa/**
+      serviceId: auth-service
+      sensitive-headers:
   strip-prefix: false
-#security:
-#  basic:
-#    enabled: false
-#  oauth2:
-#    authorization:
-#      check-token-access: http://localhost:8090/oauth/check_token
-#    client:
-#      client-id: resource-server
-#      client-secret: browser
-#      aut
-#      access-token-uri: http://localhost:8090/oath/token
-#      grant-type: implicit
-#    resource:
-#      token-info-uri: http://localhost:8090/oauth/check_token
-#    sso:
-#      login-path: /
+  add-proxy-headers: true
+
+security:
+  basic:
+    enabled: false
+  oauth2:
+    authorization:
+      check-token-access: http://localhost:8090/oauth/check_token
+    sso:
+      loginPath: /login
+    client:
+      access-token-uri: http://uaa-service/uaa/oauth/token
+      userAuthorizationUri: http://uaa-service/uaa/oauth/authorize
+      clientId: client
+      clientSecret: clientpassword
+    resource:
+      token-info-uri: http://localhost:8090/oauth/check_token

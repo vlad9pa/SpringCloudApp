@@ -19,4 +19,5 @@ public class UserServiceClientApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(UserServiceClientApplication.class, args);
 	}
+
 }

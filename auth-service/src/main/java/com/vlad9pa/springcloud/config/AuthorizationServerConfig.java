@@ -1,8 +1,10 @@
 package com.vlad9pa.springcloud.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.ManagementServerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  */
 @Configuration
 @EnableAuthorizationServer
+@Order(ManagementServerProperties.ACCESS_OVERRIDE_ORDER)
 @SessionAttributes("authorizationRequest")
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
