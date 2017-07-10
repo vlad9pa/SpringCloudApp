@@ -26,8 +26,8 @@ security:
       loginPath: /login
     client:
       access-token-uri: http://uaa-service/uaa/oauth/token
-      userAuthorizationUri: http://uaa-service/uaa/oauth/authorize
+      userAuthorizationUri: /uaa/oauth/authorize
       clientId: client
       clientSecret: clientpassword
     resource:
-      token-info-uri: http://localhost:8090/oauth/check_token
+      token-info-uri: http://uaa-service/oauth/check_token

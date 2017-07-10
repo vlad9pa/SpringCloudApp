@@ -12,8 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 /**
+ *
+ * Testing Ribbon Client.
+ *
+ *
  * @author Vlad Milyutin.
  */
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -30,8 +35,6 @@ public class UserController {
     @GetMapping(value = "/user/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
     User getByUserName(@PathVariable("username") String username){
        User user = restTemplate.getForObject("http://user-service/user/"+username, User.class);
-        System.out.println("::::USSERR:::::" + user);
-       user.setUsername("RIBBON");
        return user;
     }
 }
