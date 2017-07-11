@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vlad9pa.springcloud.entity.User;
 import feign.Feign;
-import feign.
 import feign.jackson.JacksonDecoder;
 import org.springframework.web.bind.annotation.*;
 
