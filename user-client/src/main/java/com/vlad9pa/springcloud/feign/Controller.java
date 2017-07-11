@@ -39,6 +39,7 @@ public class Controller {
         return user;
     }
 
+
     @GetMapping(value = "/user/")
     public JsonNode getAllUsers(){
         return userClient.getAllUsers();
