@@ -1,7 +1,6 @@
-package com.vlad9pa.springcloud.entity;
+package com.vlad9pa.springcloud.model;
 
 import lombok.Data;
-import org.codehaus.jackson.annotate.JsonProperty;
 
 import java.util.List;
 
@@ -11,13 +10,12 @@ import java.util.List;
 @Data
 public class User {
 
-    @JsonProperty("id")
     private String id;
-    @JsonProperty("username")
+
     private String username;
-    @JsonProperty("password")
+
     private String password;
-    @JsonProperty("roles")
+
     private List<String> roles;
 
 }

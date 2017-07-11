@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -37,9 +38,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/uaa/uaa/oauth/token").permitAll().anyRequest().authenticated()
+        http
+                .authorizeRequests().antMatchers("/uaa/uaa/oauth/token").permitAll()
                 .and()
-                .csrf().disable()
+                .authorizeRequests().antMatchers(HttpMethod.POST,"/user-service/user/").hasRole("ADMIN")
+                .and()
+                .csrf().disable().authorizeRequests().anyRequest().authenticated().and()
                 .addFilterAfter(oAuth2AuthenticationProcessingFilter(), AbstractPreAuthenticatedProcessingFilter.class);
     }
 

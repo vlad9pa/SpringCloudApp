@@ -1,5 +1,6 @@
 package com.vlad9pa.springcloud.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.vlad9pa.springcloud.entity.User;
 import com.vlad9pa.springcloud.service.UserService;
@@ -7,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
 import java.util.List;
 
 /**
@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public User getAllUsers(@RequestBody JsonNode userData){
+    public User getAllUsers(@RequestBody JsonNode userData) throws JsonProcessingException {
         return userService.save(userData);
     }
 
