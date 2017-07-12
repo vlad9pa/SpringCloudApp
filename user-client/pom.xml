@@ -68,35 +68,13 @@
 
 		<!--- FEIGN -->
 		<dependency>
-			<groupId>com.netflix.feign</groupId>
-			<artifactId>feign-core</artifactId>
-			<version>8.18.0</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.netflix.feign</groupId>
-			<artifactId>feign-httpclient</artifactId>
-			<version>8.17.0</version>
-		</dependency>
-		<dependency>
-			<groupId>io.github.openfeign</groupId>
-			<artifactId>feign-core</artifactId>
-			<version>9.5.0</version>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.netflix.feign</groupId>
 			<artifactId>feign-jackson</artifactId>
 			<version>8.18.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.netflix.feign</groupId>
-			<artifactId>feign-slf4j</artifactId>
-			<version>7.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>io.github.openfeign</groupId>
-			<artifactId>feign-ribbon</artifactId>
-			<version>9.4.0</version>
 		</dependency>
 		<!--- FEIGN END -->
 

@@ -20,16 +20,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Vlad Milyutin.
  */
 @Profile("FeignAutowire")
-@FeignClient(serviceId = "user-service", name = "users", url = "http://localhost:8808/user/")
+@FeignClient(name = "user-service")
 public interface UserClient{
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/", method = RequestMethod.GET)
     JsonNode getAllUsers();
 
-    @RequestMapping(value = "/{username}", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/{username}", method = RequestMethod.GET)
     JsonNode getUserByUsername(@PathVariable("username") String username);
 
-    @RequestMapping(value = "/", method = RequestMethod.POST,
+    @RequestMapping(value = "/user/", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     JsonNode saveUser(@RequestBody JsonNode userData);
 }

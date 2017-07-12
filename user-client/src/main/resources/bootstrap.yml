@@ -24,3 +24,8 @@ security:
       clientSecret: clientpassword
     resource:
       token-info-uri: /uaa/oauth/token_info
+user-server:
+  ribbon:
+    eureka:
+      enabled: false
+    listOfServers: http://localhost:8808
