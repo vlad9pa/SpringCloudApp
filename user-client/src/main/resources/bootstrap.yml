@@ -6,9 +6,6 @@ spring:
     name: user-client
 zuul:
   routes:
-#    user-service:
-#      path: /user-service/**
-#      serviceId:  user-service
     uaa-service:
       path: /uaa/**
       serviceId: auth-service
