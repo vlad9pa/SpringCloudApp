@@ -6,14 +6,12 @@ import feign.Param;
 import feign.RequestLine;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.context.annotation.Profile;
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  *
  * Feign Client init
  *
  * Note:
- * If you want to autowire FeignClient  -- you need to use @RequestMapping!!!.
  * If you build FeignClient by Feign.builder() -- you need to use @RequestLine
  *
  * @author Vlad Milyutin.
@@ -30,7 +28,7 @@ public interface UserClient {
     JsonNode getUserByUsername(@Param("username") String username);
 
     @RequestLine("POST /")
-    @Headers("ContentType: application/json")
-    JsonNode saveUser(@RequestBody JsonNode userData);
+    @Headers("Content-Type: application/json")
+    JsonNode saveUser(JsonNode userData);
 
 }

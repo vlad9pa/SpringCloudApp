@@ -41,7 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests().antMatchers("/uaa/uaa/oauth/token").permitAll()
                 .and()
-                .authorizeRequests().antMatchers(HttpMethod.POST,"/user-service/user/").hasRole("ADMIN")
+                .authorizeRequests().antMatchers(HttpMethod.POST,"**/user/**").hasRole("ADMIN")
+                .and()
+                .authorizeRequests().antMatchers(HttpMethod.GET,"/**").permitAll()
                 .and()
                 .csrf().disable().authorizeRequests().anyRequest().authenticated().and()
                 .addFilterAfter(oAuth2AuthenticationProcessingFilter(), AbstractPreAuthenticatedProcessingFilter.class);

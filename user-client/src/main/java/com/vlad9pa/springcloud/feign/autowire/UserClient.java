@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Feign Client example for Autowiring.
  *
  * Note:
- * If you want to autowire FeignClient  -- you need to use @RequestMapping!!!.
- * If you build FeignClient by Feign.builder() -- you need to use @RequestLine
+ * If you want to autowire FeignClient  -- you need to use @RequestMapping!!!
  *
  * @author Vlad Milyutin.
  */

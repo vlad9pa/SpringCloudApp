@@ -24,8 +24,11 @@ security:
       clientSecret: clientpassword
     resource:
       token-info-uri: /uaa/oauth/token_info
-user-server:
+
+### Custom ribbon client for feign ribbon client
+ribbon-user-service:
   ribbon:
     eureka:
       enabled: false
-    listOfServers: http://localhost:8808
+    listOfServers: localhost:8808
+    ServerListRefreshInterval: 15000

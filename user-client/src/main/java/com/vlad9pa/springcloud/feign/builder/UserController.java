@@ -4,6 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import feign.Feign;
 import feign.jackson.JacksonDecoder;
+import feign.jackson.JacksonEncoder;
+import feign.ribbon.RibbonClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.PostConstruct;
 
 /**
- * Using FeignClient with FeignBuilder
+ * Using FeignClient with Feign.builder() and RibbonClient
  *
- *
- * Maybe it can set ribbon client for load-balancer url..
- * https://github.com/OpenFeign/feign/tree/master/ribbon
  *
  * @author Vlad Milyutin.
  */
@@ -24,11 +25,17 @@ import javax.annotation.PostConstruct;
 @RequestMapping("/user")
 public class UserController {
 
+    @Autowired
+    private RibbonClient ribbonClient;
+
     private UserClient userClient;
 
     @PostConstruct
     public void init(){
-        userClient = Feign.builder().decoder(new JacksonDecoder()).target(UserClient.class, "http://localhost:8808/user");
+        userClient = Feign.builder()
+                .decoder(new JacksonDecoder()).encoder(new JacksonEncoder())
+                .client(ribbonClient)
+                .target(UserClient.class, "http://ribbon-user-service/user");
     }
 
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
@@ -42,13 +49,17 @@ public class UserController {
         return userClient.getAllUsers();
     }
 
-
-    // Can't decode JsonNode:
-    // feign.codec.EncodeException: class com.fasterxml.jackson.databind.node.ObjectNode is not a type supported by this encoder.
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public JsonNode saveUser(@RequestBody JsonNode userData){
-
         userData = userClient.saveUser(userData);
         return userData;
     }
+
+
+    @Bean
+    public RibbonClient ribbonClient(){
+        return new RibbonClient();
+    }
+
+
 }
