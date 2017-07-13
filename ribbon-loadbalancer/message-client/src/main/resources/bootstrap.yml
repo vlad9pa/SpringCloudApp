@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: message-client
+message-service:
+  ribbon:
+    eureka:
+      enabled: false
+  listOfServers: localhost:9000, localhost:9001, localhost:9050
+  ServerListRefreshInterval: 150
