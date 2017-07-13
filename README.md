@@ -8,7 +8,7 @@ USER-CLIENT have 3 profiles:
 * FeignAutowire
 * FeignBuilder
 
-#### Eureka Ribbon LoadBalancer:
+#### Ribbon:
 For using ribbon http client with rest template.
 <p> Example in 
 <a href="https://github.com/vlad9pa/SpringCloudApp/blob/master/eureka-server/user-client/src/main/java/com/vlad9pa/springcloud/ribbon/controller/UserController.java"> eureka-server/user-client/ribbon </a>
