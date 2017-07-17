@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: business
+  cloud:
+    config:
+      uri: http://localhost:8761/eureka
