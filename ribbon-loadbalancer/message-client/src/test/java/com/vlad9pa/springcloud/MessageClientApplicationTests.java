@@ -1,4 +1,4 @@
-package com.vlad9pa.ribbon.loadbalancer;
+package com.vlad9pa.springcloud;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

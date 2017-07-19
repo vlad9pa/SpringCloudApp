@@ -1,4 +1,4 @@
-package com.vlad9pa.springcloud.config;
+package com.vlad9pa.springcloud.eurekaclient.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.autoconfigure.ManagementServerProperties;

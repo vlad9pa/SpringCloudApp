@@ -1,4 +1,4 @@
-package com.vlad9pa.ribbon.loadbalancer.controller;
+package com.vlad9pa.springcloud.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
